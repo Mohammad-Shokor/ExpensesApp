@@ -20,7 +20,11 @@ class ExpensesItem extends StatelessWidget {
                 Text("${expense.amount}\$"),
                 Spacer(),
                 Row(
-                  children: [Icon(Icons.category), Text(expense.formattedDate)],
+                  children: [
+                    Icon(categoryIcon[expense.category]),
+                    SizedBox(width: 8),
+                    Text(expense.formattedDate),
+                  ],
                 ),
               ],
             ),

@@ -1,3 +1,4 @@
+import 'package:expenses_tracker/models/new_expense.dart';
 import 'package:expenses_tracker/widgets/expenseslist.dart';
 import 'package:flutter/material.dart';
 
@@ -31,8 +32,30 @@ class _ExpensesAppState extends State<ExpensesApp> {
       amount: 300,
     ),
   ];
+
+  void _openAddExpenseOverlay() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => NewExpense(),
+      isScrollControlled: true,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Expenseslist(expensesList: _registeredExpensesList);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Expense Tracker"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              _openAddExpenseOverlay();
+            },
+            icon: Icon(Icons.add),
+          ),
+        ],
+      ),
+      body: Expenseslist(expensesList: _registeredExpensesList),
+    );
   }
 }
